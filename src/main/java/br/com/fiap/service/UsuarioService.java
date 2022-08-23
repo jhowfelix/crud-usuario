@@ -1,6 +1,7 @@
 package br.com.fiap.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,16 +17,17 @@ public class UsuarioService {
 	UsuarioRepository repository;
 	
 	
-	public Usuario findById(Long id) {
-		return repository.findById(id).get();
+	public Optional<Usuario> findById(Long id) {
+		return repository.findById(id);
 	}
 	
 	public List<Usuario> findAll(){
 		return repository.findAll();
 	}
 	
-	public void insert(Usuario usuario) {
-		repository.save(usuario);
+	public Usuario insert(Usuario usuario) {
+		Usuario saveUsuario = repository.save(usuario);
+		return saveUsuario;
 	}
 	
 	public void delete(Long id) {
