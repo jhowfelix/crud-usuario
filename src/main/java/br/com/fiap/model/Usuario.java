@@ -12,91 +12,90 @@ import javax.persistence.Table;
 import br.com.fiap.model.enums.Genero;
 
 @Entity
-@Table(name="T_CALI_USUARIO")
+@Table(name = "T_CALI_USUARIO")
 public class Usuario {
-  
-  @Id
-  @GeneratedValue(strategy= GenerationType.IDENTITY)
-  @Column(name="id_usuario")
-  private long id;
 
-  @Column(name="nm_usuario")
-  private String nomeUsuario;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_usuario")
+	private long id;
 
-  @Column(name="nm_sobrenome_usuario")
-  private String sobrenomeUsuario;
+	@Column(name = "nm_usuario")
+	private String nomeUsuario;
 
-  @Column(name="ds_email")
-  private String email;
+	@Column(name = "nm_sobrenome_usuario")
+	private String sobrenomeUsuario;
 
-  @Column(name="nm_senha")
-  private String senha;
+	@Column(name = "ds_email")
+	private String email;
 
-  @Column(name="nr_cpf")
-  private long cpf;
-  
-  @Enumerated(EnumType.STRING)
-  @Column(name = "nm_genero")
-  private Genero genero;
+	@Column(name = "nm_senha")
+	private String senha;
 
-  public Usuario() {
-  }
+	@Column(name = "nr_cpf")
+	private long cpf;
 
-  public long getId() {
-    return id;
-  }
+	@Enumerated(EnumType.STRING)
+	@Column(name = "nm_genero")
+	private Genero genero;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+	public Usuario() {
+	}
 
-  public String getNomeUsuario() {
-    return nomeUsuario;
-  }
+	public long getId() {
+		return id;
+	}
 
-  public void setNomeUsuario(String nomeUsuario) {
-    this.nomeUsuario = nomeUsuario;
-  }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public String getSobrenomeUsuario() {
-    return sobrenomeUsuario;
-  }
+	public String getNomeUsuario() {
+		return nomeUsuario;
+	}
 
-  public void setSobrenomeUsuario(String sobrenomeUsuario) {
-    this.sobrenomeUsuario = sobrenomeUsuario;
-  }
+	public void setNomeUsuario(String nomeUsuario) {
+		this.nomeUsuario = nomeUsuario;
+	}
 
-  public String getEmail() {
-    return email;
-  }
+	public String getSobrenomeUsuario() {
+		return sobrenomeUsuario;
+	}
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	public void setSobrenomeUsuario(String sobrenomeUsuario) {
+		this.sobrenomeUsuario = sobrenomeUsuario;
+	}
 
-  public String getSenha() {
-    return senha;
-  }
+	public String getEmail() {
+		return email;
+	}
 
-  public void setSenha(String senha) {
-    this.senha = senha;
-  }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-  public long getCpf() {
-    return cpf;
-  }
+	public String getSenha() {
+		return senha;
+	}
 
-  public void setCpf(long cpf) {
-    this.cpf = cpf;
-  }
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
-  public Genero getGenero() {
-    return genero;
-  }
+	public long getCpf() {
+		return cpf;
+	}
 
-  public void setGenero(Genero genero) {
-    this.genero = genero;
-  }
+	public void setCpf(long cpf) {
+		this.cpf = cpf;
+	}
 
-  
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+
 }

@@ -3,7 +3,7 @@ package br.com.fiap.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.websocket.server.PathParam;
+
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.model.Usuario;
 import br.com.fiap.service.UsuarioService;
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
 
 @RestController
 @RequestMapping(value = "/usuario")
@@ -30,7 +29,7 @@ public class UsuarioController {
 	UsuarioService service;
 
 	@PostMapping()
-	public ResponseEntity<Usuario> insert(@RequestBody Usuario usuario) {
+	public ResponseEntity<Usuario> insert(@RequestBody  Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.insert(usuario));
 	}
 
@@ -56,7 +55,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Usuario> update(@RequestBody Usuario newUsuario,@PathVariable Long id) {
+	public ResponseEntity<Usuario> update(@RequestBody  Usuario newUsuario,@PathVariable Long id) {
 		Optional<Usuario> findById = service.findById(id);
 		if (findById.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
