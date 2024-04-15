@@ -1,9 +1,6 @@
 package br.com.fiap.controller;
 
 import java.util.List;
-import java.util.Optional;
-
-
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fiap.dto.UsuarioDto;
 import br.com.fiap.model.Usuario;
 import br.com.fiap.service.UsuarioService;
 
@@ -29,38 +27,31 @@ public class UsuarioController {
 	UsuarioService service;
 
 	@PostMapping()
-	public ResponseEntity<Usuario> insert(@RequestBody  Usuario usuario) {
+	public ResponseEntity<UsuarioDto> insert(@RequestBody  UsuarioDto usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.insert(usuario));
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Usuario>> findAll() {
+	public ResponseEntity<List<UsuarioDto>> findAll() {
 		return ResponseEntity.ok().body(service.findAll());
 	}
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Usuario> findById(@PathVariable Long id) {
-		return ResponseEntity.of(service.findById(id));
+	public ResponseEntity<UsuarioDto> findById(@PathVariable Long id) {
+		UsuarioDto byId = service.findById(id);
+		return ResponseEntity.status(HttpStatus.OK).body(byId);
 	}
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Object> deleteById(@PathVariable Long id) {
-		Optional<Usuario> findById = service.findById(id);
-		if (findById.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
 		service.delete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Usuario> update(@RequestBody  Usuario newUsuario,@PathVariable Long id) {
-		Optional<Usuario> findById = service.findById(id);
-		if (findById.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-		Usuario usuario = findById.get();
+	public ResponseEntity<UsuarioDto> update(@RequestBody  Usuario newUsuario,@PathVariable Long id) {
+		UsuarioDto usuario = service.findById(id);
 		BeanUtils.copyProperties(newUsuario, usuario);
 		usuario.setId(id);
 		service.insert(usuario);

@@ -94,9 +94,4 @@ public class UsuarioDto {
                 + ", email=" + email + ", cpf=" + cpf + ", genero=" + genero + "]";
     }
 
-
-    
-
-
-    
 }

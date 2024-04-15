@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.fiap.dto.UsuarioDto;
+import br.com.fiap.mapper.UsuarioMapper;
 import br.com.fiap.model.Usuario;
 import br.com.fiap.repository.UsuarioRepository;
 
@@ -16,18 +18,31 @@ public class UsuarioService {
 	@Autowired
 	UsuarioRepository repository;
 	
+
+	@Autowired
+	UsuarioMapper mapper;
+
+
+
 	
-	public Optional<Usuario> findById(Long id) {
-		return repository.findById(id);
+	public UsuarioDto findById(Long id) {
+
+		Optional<Usuario> usuarioEntity = repository.findById(id);
+		UsuarioDto dto = mapper.toDto(usuarioEntity.get());
+		return  dto;
 	}
 	
-	public List<Usuario> findAll(){
-		return repository.findAll();
+	public List<UsuarioDto> findAll(){
+		List<UsuarioDto> dtos = mapper.toDtos( repository.findAll());
+	
+		return dtos;
 	}
 	
-	public Usuario insert(Usuario usuario) {
-		Usuario saveUsuario = repository.save(usuario);
-		return saveUsuario;
+	public UsuarioDto insert(UsuarioDto usuarioDto) {
+		Usuario entity = mapper.toEntity(usuarioDto);
+		Usuario saveUsuario = repository.save(entity);
+		return mapper.toDto(saveUsuario);
+		
 	}
 	
 	public void delete(Long id) {
