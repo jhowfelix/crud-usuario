@@ -1,5 +1,7 @@
 package br.com.fiap.dto;
 
+import javax.validation.constraints.Email;
+
 import br.com.fiap.model.enums.Genero;
 
 public class UsuarioDto {
@@ -10,6 +12,8 @@ public class UsuarioDto {
 
     private String sobrenomeUsuario;
 
+
+   @Email
     private String email;
 
     private String senha;

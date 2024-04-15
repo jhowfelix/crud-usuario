@@ -2,6 +2,8 @@ package br.com.fiap.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.dto.UsuarioDto;
-import br.com.fiap.model.Usuario;
 import br.com.fiap.service.UsuarioService;
 
 @RestController
@@ -27,7 +28,7 @@ public class UsuarioController {
 	UsuarioService service;
 
 	@PostMapping()
-	public ResponseEntity<UsuarioDto> insert(@RequestBody  UsuarioDto usuario) {
+	public ResponseEntity<UsuarioDto> insert(@RequestBody @Valid UsuarioDto usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.insert(usuario));
 	}
 
@@ -50,7 +51,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UsuarioDto> update(@RequestBody  Usuario newUsuario,@PathVariable Long id) {
+	public ResponseEntity<UsuarioDto> update(@RequestBody @Valid UsuarioDto newUsuario,@PathVariable Long id) {
 		UsuarioDto usuario = service.findById(id);
 		BeanUtils.copyProperties(newUsuario, usuario);
 		usuario.setId(id);
