@@ -13,7 +13,7 @@ import br.com.fiap.model.enums.Genero;
 
 @Entity
 @Table(name = "T_CALI_USUARIO")
-public class Usuario {
+public class Usuario  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

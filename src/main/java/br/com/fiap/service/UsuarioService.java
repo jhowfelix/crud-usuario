@@ -37,10 +37,13 @@ public class UsuarioService {
 
 	public UsuarioDto insert(UsuarioDto usuarioDto) {
 		Usuario entity = mapper.toEntity(usuarioDto);
+		
 		Usuario saveUsuario = repository.save(entity);
 		return mapper.toDto(saveUsuario);
 
 	}
+
+	
 
 	public void delete(Long id) {
 		repository.deleteById(id);
