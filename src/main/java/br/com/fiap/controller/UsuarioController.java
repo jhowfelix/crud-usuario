@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.dto.UsuarioDto;
+import br.com.fiap.model.Usuario;
 import br.com.fiap.service.UsuarioService;
 
 @RestController
@@ -51,7 +52,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UsuarioDto> update(@RequestBody @Valid UsuarioDto newUsuario,@PathVariable Long id) {
+	public ResponseEntity<UsuarioDto> update(@RequestBody @Valid Usuario newUsuario, @PathVariable Long id) {
 		UsuarioDto usuario = service.findById(id);
 		BeanUtils.copyProperties(newUsuario, usuario);
 		usuario.setId(id);
