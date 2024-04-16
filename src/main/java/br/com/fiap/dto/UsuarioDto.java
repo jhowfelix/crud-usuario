@@ -3,37 +3,23 @@ package br.com.fiap.dto;
 import javax.validation.constraints.Email;
 
 import br.com.fiap.model.enums.Genero;
+import br.com.fiap.model.enums.Role;
 
 public class UsuarioDto {
 
     private long id;
-
     private String nomeUsuario;
-
     private String sobrenomeUsuario;
 
-
-   @Email
+    @Email
     private String email;
 
     private String senha;
-
     private long cpf;
-
     private Genero genero;
+    private Role role;
 
     public UsuarioDto() {
-    }
-
-    public UsuarioDto(long id, String nomeUsuario, String sobrenomeUsuario, String email, String senha, long cpf,
-            Genero genero) {
-        this.id = id;
-        this.nomeUsuario = nomeUsuario;
-        this.sobrenomeUsuario = sobrenomeUsuario;
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
-        this.genero = genero;
     }
 
     public long getId() {
@@ -68,14 +54,6 @@ public class UsuarioDto {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
     public long getCpf() {
         return cpf;
     }
@@ -92,10 +70,19 @@ public class UsuarioDto {
         this.genero = genero;
     }
 
-    @Override
-    public String toString() {
-        return "UsuarioDto [id=" + id + ", nomeUsuario=" + nomeUsuario + ", sobrenomeUsuario=" + sobrenomeUsuario
-                + ", email=" + email + ", cpf=" + cpf + ", genero=" + genero + "]";
+    public Role getRole() {
+        return role;
     }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 }
